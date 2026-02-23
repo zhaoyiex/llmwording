@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>语境背单词</title>
+    <meta name="description" content="纯白极简界面的背单词应用，通过语境记忆单词">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext x='50%25' y='50%25' font-size='80' text-anchor='middle' dy='.3em'%3E📚%3C/text%3E%3C/svg%3E">
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>语境背单词</h1>
+            <button id="settings-btn">设置</button>
+        </header>
+        
+        <main>
+            <div id="welcome-screen" class="screen">
+                <div id="stats-container">
+                    <div class="stat-item">
+                        <p class="stat-label">已记忆单词</p>
+                        <p class="stat-value" id="learned-count">0</p>
+                    </div>
+                    <div class="stat-item">
+                        <p class="stat-label">未记忆单词</p>
+                        <p class="stat-value" id="unlearned-count">0</p>
+                    </div>
+                </div>
+                <h2>欢迎使用语境背单词</h2>
+                <p>通过具体语境记忆单词，提高记忆效率</p>
+                <button id="start-btn">开始记忆</button>
+                
+                <div id="tabs-container">
+                    <button id="home-tab" class="tab-btn active">首页</button>
+                    <button id="review-tab" class="tab-btn">已记忆单词</button>
+                </div>
+                
+                <div id="review-screen" class="tab-content hidden">
+                    <h3>已记忆单词列表</h3>
+                    <div id="review-list"></div>
+                </div>
+            </div>
+            
+            <div id="loading-screen" class="screen hidden">
+                <div class="loading-spinner"></div>
+                <p>正在生成学习内容...</p>
+            </div>
+            
+            <div id="word-screen" class="screen hidden">
+                <div id="text-container">
+                    <p id="context-text"></p>
+                </div>
+                <div id="options-container">
+                    <button class="option-btn" data-index="0"></button>
+                    <button class="option-btn" data-index="1"></button>
+                    <button class="option-btn" data-index="2"></button>
+                    <button class="option-btn" data-index="3"></button>
+                </div>
+                <div id="progress-container">
+                    <div id="progress-bar"></div>
+                    <p id="progress-text">1/5</p>
+                </div>
+            </div>
+            
+            <div id="round-complete-screen" class="screen hidden">
+                <h2>本轮完成！</h2>
+                <p>你已经完成了本轮的单词记忆</p>
+                <button id="next-round-btn">下一轮</button>
+                <button id="back-home-btn">返回首页</button>
+            </div>
+        </main>
+        
+        <footer>
+            <p>© 2026 语境背单词</p>
+        </footer>
+        
+        <!-- 单词释义便利贴 -->
+        <div id="word-sticky-note" class="sticky-note hidden">
+            <div class="sticky-note-content">
+                <h4 id="sticky-word"></h4>
+                <p id="sticky-meaning"></p>
+            </div>
+            <div class="sticky-note-tape"></div>
+        </div>
+    </div>
+    
+    <div id="settings-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>设置</h2>
+            <div class="setting-item">
+                <label for="api-key">API Key</label>
+                <input type="text" id="api-key" placeholder="请输入 API Key">
+            </div>
+            <div class="setting-item">
+                <label for="dictionary">选择词典</label>
+                <select id="dictionary">
+                    <option value="">请选择词典</option>
+                </select>
+            </div>
+            <div class="modal-buttons">
+                <button id="save-settings-btn">保存</button>
+                <button id="close-settings-btn">关闭</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
